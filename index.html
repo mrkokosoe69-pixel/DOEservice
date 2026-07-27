@@ -52,16 +52,89 @@
             font-size: 14px;
         }
 
+        /* LOGIN OVERLAY STYLES */
+        .login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 35px 30px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .login-card h2 {
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .login-card p {
+            color: var(--text-sub);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .login-input {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px;
+            border-radius: 14px;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+        }
+
+        .login-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .login-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .login-error {
+            color: var(--accent-red);
+            font-size: 12px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* MAIN APP STYLES - MODERN ROUNDED CORNERS */
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            display: none;
         }
 
         .top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 12px;
+            padding-bottom: 16px;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
@@ -87,16 +160,10 @@
 
         @keyframes fly3d {
             0% {
-                transform: translateY(0px) rotateY(0deg) rotateZ(0deg) scale(1);
-                box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
-            }
-            50% {
-                transform: translateY(-6px) rotateY(15deg) rotateZ(-3deg) scale(1.05);
-                box-shadow: 0 12px 20px rgba(56, 189, 248, 0.5);
+                transform: translateY(0px) rotateY(0deg) scale(1);
             }
             100% {
-                transform: translateY(3px) rotateY(-15deg) rotateZ(3deg) scale(0.98);
-                box-shadow: 0 6px 10px rgba(56, 189, 248, 0.2);
+                transform: translateY(-5px) rotateY(15deg) scale(1.05);
             }
         }
 
@@ -104,37 +171,48 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .clock-badge {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 6px 12px;
-            border-radius: 16px;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 13px;
             color: var(--text-sub);
             font-weight: 600;
         }
 
-        .theme-btn, .lang-select {
+        .theme-btn, .lang-select, .logout-btn, .trash-toggle-btn {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 6px 12px;
-            border-radius: 8px;
+            padding: 8px 14px;
+            border-radius: 14px;
             cursor: pointer;
             font-size: 13px;
             outline: none;
             font-weight: 600;
         }
 
+        .trash-toggle-btn {
+            border-color: rgba(251, 191, 36, 0.4);
+            color: var(--accent-yellow);
+        }
+
+        .logout-btn {
+            border-color: rgba(239, 68, 68, 0.4);
+            color: var(--accent-red);
+        }
+
         .menu-toggle-btn {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            border-radius: 14px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -203,20 +281,21 @@
             background-color: var(--input-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 10px; border-radius: 8px;
+            padding: 10px; border-radius: 12px;
             outline: none; font-size: 13px; width: 100%;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px; margin-bottom: 20px;
+            gap: 16px; margin-bottom: 20px;
         }
 
         .stat-card {
             background-color: var(--card-bg);
-            padding: 16px; border-radius: 10px;
+            padding: 18px 20px; border-radius: 20px;
             border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .stat-title {
@@ -226,7 +305,7 @@
         }
 
         .stat-value {
-            font-size: 22px; font-weight: 800;
+            font-size: 24px; font-weight: 800;
             color: var(--accent-cyan);
         }
 
@@ -238,15 +317,16 @@
 
         .form-container {
             background-color: var(--card-bg);
-            padding: 18px; border-radius: 10px;
+            padding: 22px; border-radius: 20px;
             border: 1px solid var(--border-color);
             margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px; margin-bottom: 16px;
+            gap: 14px; margin-bottom: 18px;
         }
 
         .form-group { 
@@ -258,16 +338,20 @@
 
         .form-group label {
             font-size: 12px; color: var(--text-sub);
-            margin-bottom: 4px; font-weight: 700;
+            margin-bottom: 6px; font-weight: 700;
         }
 
         .form-group input, .form-group select {
             background-color: var(--input-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 10px; border-radius: 6px;
+            padding: 10px 14px; border-radius: 12px;
             outline: none; font-size: 13px; font-weight: 600;
-            height: 40px;
+            height: 42px;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--accent-cyan);
         }
 
         .age-label-text {
@@ -275,15 +359,16 @@
             font-size: 11px; 
             font-weight: 700;
             position: absolute;
-            right: 10px;
+            right: 12px;
             top: 2px;
         }
 
         .btn-save {
             width: 100%; background-color: var(--primary);
             color: white; border: none; padding: 12px;
-            border-radius: 6px; font-weight: 800;
+            border-radius: 14px; font-weight: 800;
             font-size: 14px; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
         }
 
         .btn-save:hover { background-color: var(--primary-hover); }
@@ -291,7 +376,7 @@
         .top-search-box {
             display: flex;
             gap: 10px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             width: 100%;
         }
 
@@ -300,15 +385,11 @@
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 10px 14px;
-            border-radius: 6px;
+            padding: 12px 16px;
+            border-radius: 16px;
             outline: none;
             font-size: 13px;
             font-weight: 600;
-        }
-
-        .top-search-input:focus {
-            border-color: var(--accent-cyan);
         }
 
         .controls-row {
@@ -320,14 +401,14 @@
         .filter-buttons {
             display: flex; gap: 6px;
             background-color: var(--card-bg);
-            padding: 3px; border-radius: 6px;
+            padding: 4px; border-radius: 14px;
             border: 1px solid var(--border-color);
         }
 
         .filter-btn {
             background: none; border: none;
-            color: var(--text-sub); padding: 6px 12px;
-            border-radius: 4px; cursor: pointer;
+            color: var(--text-sub); padding: 8px 16px;
+            border-radius: 10px; cursor: pointer;
             font-size: 12px; font-weight: 700;
         }
 
@@ -341,30 +422,19 @@
         }
 
         .btn-delete-selected {
-            background-color: rgba(239, 68, 68, 0.2);
+            background-color: rgba(239, 68, 68, 0.15);
             color: var(--accent-red);
-            border: 1px solid rgba(239, 68, 68, 0.4);
-            padding: 8px 14px; border-radius: 6px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 8px 16px; border-radius: 12px;
             cursor: pointer; font-size: 12px; font-weight: 800;
             display: none;
-        }
-
-        .btn-delete-selected:hover {
-            background-color: rgba(239, 68, 68, 0.35);
-        }
-
-        .btn-clear-all {
-            background-color: rgba(248, 113, 113, 0.15);
-            color: var(--accent-red);
-            border: 1px solid rgba(248, 113, 113, 0.3);
-            padding: 8px 14px; border-radius: 6px;
-            cursor: pointer; font-size: 12px; font-weight: 800;
         }
 
         .table-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 10px; overflow: hidden;
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .table-responsive { width: 100%; overflow-x: auto; }
@@ -380,14 +450,14 @@
         }
 
         th {
-            color: var(--text-sub); padding: 10px 12px;
+            color: var(--text-sub); padding: 12px 14px;
             font-weight: 700; font-size: 11px;
             text-transform: uppercase; letter-spacing: 0.5px;
             white-space: nowrap;
         }
 
         td {
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-bottom: 1px solid var(--border-color);
             white-space: nowrap; vertical-align: middle;
             color: var(--text-main); font-size: 13px;
@@ -395,13 +465,12 @@
 
         tbody tr:hover { background-color: var(--row-hover); }
 
-        /* Custom Checkbox Styling */
         .custom-checkbox {
             width: 18px;
             height: 18px;
             cursor: pointer;
             accent-color: var(--primary);
-            vertical-align: middle;
+            border-radius: 6px;
         }
 
         .row-select-cell {
@@ -414,23 +483,23 @@
         .date-badge { font-size: 12px; color: var(--accent-cyan); font-weight: 600; font-family: monospace; }
         .id-badge {
             font-family: monospace; background-color: rgba(56, 189, 248, 0.15);
-            color: var(--accent-cyan); padding: 3px 6px; border-radius: 4px;
+            color: var(--accent-cyan); padding: 4px 8px; border-radius: 8px;
             font-weight: 700; font-size: 12px;
         }
         .phone-badge {
             font-family: monospace; background-color: rgba(251, 191, 36, 0.15);
-            color: var(--accent-yellow); padding: 3px 6px; border-radius: 4px;
+            color: var(--accent-yellow); padding: 4px 8px; border-radius: 8px;
             font-weight: 700; font-size: 12px;
         }
         .pass-badge {
             font-family: monospace; background-color: rgba(52, 211, 153, 0.15);
-            color: var(--accent-green); padding: 3px 6px; border-radius: 4px;
+            color: var(--accent-green); padding: 4px 8px; border-radius: 8px;
             font-weight: 700; font-size: 12px;
         }
 
         .status-pill {
             display: inline-flex; align-items: center; gap: 4px;
-            padding: 3px 10px; border-radius: 12px;
+            padding: 4px 12px; border-radius: 14px;
             font-size: 11px; font-weight: 700; cursor: pointer;
         }
 
@@ -444,14 +513,13 @@
             border: 1px solid rgba(52, 211, 153, 0.3);
         }
 
-        /* Modernized Vector Icon Buttons */
         .action-group { display: flex; align-items: center; gap: 6px; }
 
         .btn-icon-only {
             border: none;
             width: 32px;
             height: 32px;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -468,6 +536,7 @@
         .btn-icon-status-issue { background-color: rgba(239, 68, 68, 0.25); color: #ef4444; }
         .btn-icon-edit { background-color: rgba(251, 191, 36, 0.18); color: #fbbf24; }
         .btn-icon-share { background-color: rgba(52, 211, 153, 0.18); color: #34d399; }
+        .btn-icon-restore { background-color: rgba(56, 189, 248, 0.2); color: var(--accent-cyan); }
 
         .no-data {
             text-align: center; color: var(--text-sub);
@@ -484,7 +553,18 @@
 </head>
 <body>
 
-<div class="container">
+<!-- LOGIN OVERLAY -->
+<div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+        <h2>🔒 Management System</h2>
+        <p>စနစ်အတွင်းသို့ဝင်ရန် Password ထည့်ပါ</p>
+        <input type="password" id="loginPassword" class="login-input" placeholder="******" maxlength="10">
+        <button class="login-btn" onclick="checkLogin()">Login ဝင်မည်</button>
+        <div class="login-error" id="loginError">❌ Password မှားယွင်းနေပါသည်။</div>
+    </div>
+</div>
+
+<div class="container" id="mainContainer">
     <div class="top-nav">
         <div class="profile-container">
             <img class="profile-img" id="userProfileImg" src="https://api.iconify.design/fluent-emoji-flat:dove.svg" alt="3D Flying Bird">
@@ -493,11 +573,13 @@
         <div class="nav-controls">
             <span class="clock-badge" id="currentTime">🕒 00:00:00 PM</span>
             <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Night Mode</button>
+            <button class="trash-toggle-btn" onclick="toggleTrashView()" id="trashViewBtn">🗑️ Trash (0)</button>
             <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
                 <option value="MM">MM မြန်မာ</option>
                 <option value="EN">EN English</option>
                 <option value="TH">TH ไทย</option>
             </select>
+            <button class="logout-btn" onclick="logout()" title="Logout">🔒 Logout</button>
             <button class="menu-toggle-btn" onclick="toggleSidebar()" title="Settings">☰</button>
         </div>
     </div>
@@ -603,7 +685,6 @@
         </div>
         <div class="action-btns-group">
             <button class="btn-delete-selected" id="btn_delete_selected" onclick="deleteSelectedData()">🗑 အမှန်ခြစ်ထားသည်များဖျက်မည်</button>
-            <button class="btn-clear-all" id="btn_clear_all" onclick="clearAllData()">🗑 အားလုံးဖျက်မည်</button>
         </div>
     </div>
 
@@ -639,7 +720,10 @@
 <!-- Firebase SDK Modern Imports -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Global Master Passcode
+    const SYSTEM_PASSCODE = "112025";
 
     // Firebase Configurations
     const firebaseConfig = {
@@ -660,6 +744,37 @@
     let clients = [];
     let currentFilter = 'ALL';
     let currentLang = 'MM';
+    let isTrashMode = false;
+
+    // LOGIN LOGIC
+    window.checkLogin = function() {
+        const input = document.getElementById('loginPassword').value;
+        const err = document.getElementById('loginError');
+        if (input === SYSTEM_PASSCODE) {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContainer').style.display = 'block';
+            err.style.display = 'none';
+            sessionStorage.setItem('isLoggedIn', 'true');
+        } else {
+            err.style.display = 'block';
+        }
+    }
+
+    window.logout = function() {
+        sessionStorage.removeItem('isLoggedIn');
+        document.getElementById('loginOverlay').style.display = 'flex';
+        document.getElementById('mainContainer').style.display = 'none';
+        document.getElementById('loginPassword').value = '';
+    }
+
+    if (sessionStorage.getItem('isLoggedIn') === 'true') {
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('mainContainer').style.display = 'block';
+    }
+
+    document.getElementById('loginPassword').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') checkLogin();
+    });
 
     const i18n = {
         MM: {
@@ -667,8 +782,8 @@
             form_title: "👤 စာရင်းသစ်ထည့်သွင်းရန်", form_title_edit: "✏️ စာရင်း ပြန်လည်ပြင်ဆင်ရန်", doc_id: "💳 Pass/Work နံပါတ် *", name: "👤 နာမည် (English စာလုံးကြီး) *",
             dob: "🎂 မွေးနေ့ *", email: "✉ Gmail", pass: "🔑 Password", phone: "📞 ဖုန်းနံပါတ်", status: "⚙ လုပ်ငန်းအခြေအနေ",
             fee: "💰 ဝန်ဆောင်ခ / ကျသင့်ငွေ (THB)", save: "💾 စာရင်းသိမ်းဆည်းမည်", update: "🔄 ပြင်ဆင်ချက် သိမ်းမည်", search: "🔍 Pass/Work နံပါတ် သို့မဟုတ် နာမည် သို့မဟုတ် ဖုန်းနံပါတ် ရိုက်ရှာပါ...",
-            f_all: "အားလုံး", f_work: "Working", f_done: "Completed", clear_all: "🗑 အားလုံးဖျက်မည်",
-            list_title: "📁 သိမ်းဆည်းထားသော စာရင်းများ", age_suffix: " နှစ်", no_data: "သိမ်းဆည်းထားသော စာရင်း မရှိသေးပါ။",
+            f_all: "အားလုံး", f_work: "Working", f_done: "Completed",
+            list_title: "📁 သိမ်းဆည်းထားသော စာရင်းများ", list_title_trash: "🗑️ ဖျက်ထားသော စာရင်းများ (ရက် ၃၀ အတွင်း ပြန်ယူနိုင်သည်)", age_suffix: " နှစ်", no_data: "သိမ်းဆည်းထားသော စာရင်း မရှိသေးပါ။",
             th_saved_time: "SAVED DATE", th_name: "အမည်", th_doc_id: "Pass/Work", th_dob: "မွေးနေ့ (အသက်)", th_pass: "Password", th_phone: "ဖုန်းနံပါတ်", th_status: "အခြေအနေ", th_fee: "ကျသင့်ငွေ", th_action: "လုပ်ဆောင်ချက်"
         },
         EN: {
@@ -676,8 +791,8 @@
             form_title: "👤 Add New Client", form_title_edit: "✏️ Edit Client Record", doc_id: "💳 Pass/Work No. *", name: "👤 Full Name (UPPERCASE) *",
             dob: "🎂 Date of Birth *", email: "✉ Gmail", pass: "🔑 Password", phone: "📞 Phone Number", status: "⚙ Work Status",
             fee: "💰 Revenue / Fee (THB)", save: "💾 Save Record", update: "🔄 Update Record", search: "🔍 Search Pass/Work, Name or Phone...",
-            f_all: "All", f_work: "Working", f_done: "Completed", clear_all: "🗑 Delete All",
-            list_title: "📁 Saved Records", age_suffix: " yrs", no_data: "No records found.",
+            f_all: "All", f_work: "Working", f_done: "Completed",
+            list_title: "📁 Saved Records", list_title_trash: "🗑️ Trash Records (Restorable within 30 days)", age_suffix: " yrs", no_data: "No records found.",
             th_saved_time: "SAVED DATE", th_name: "Name", th_doc_id: "Pass/Work", th_dob: "DOB (Age)", th_pass: "Password", th_phone: "Phone", th_status: "Status", th_fee: "Fee (THB)", th_action: "Actions"
         },
         TH: {
@@ -685,8 +800,8 @@
             form_title: "👤 เพิ่มข้อมูลใหม่", form_title_edit: "✏️ แก้ไขข้อมูล", doc_id: "💳 Pass/Work *", name: "👤 ชื่อ-นามสกุล (ตัวพิมพ์ใหญ่) *",
             dob: "🎂 วันเกิด *", email: "✉ อีเมล", pass: "🔑 รหัสผ่าน", phone: "📞 เบอร์โทรศัพท์", status: "⚙ สถานะงาน",
             fee: "💰 ค่าบริการ (THB)", save: "💾 บันทึกข้อมูล", update: "🔄 อัปเดตข้อมูล", search: "🔍 ค้นหาด้วย Pass/Work, ชื่อ หรือเบอร์โทร...",
-            f_all: "ทั้งหมด", f_work: "กำลังดำเนินการ", f_done: "เสร็จสิ้น", clear_all: "🗑 ลบทั้งหมด",
-            list_title: "📁 บันทึกข้อมูลแล้ว", age_suffix: " ปี", no_data: "ไม่พบข้อมูล",
+            f_all: "ทั้งหมด", f_work: "กำลังดำเนินการ", f_done: "เสร็จสิ้น",
+            list_title: "📁 บันทึกข้อมูลแล้ว", list_title_trash: "🗑️ ถังขยะ (กู้คืนได้ภายใน 30 วัน)", age_suffix: " ปี", no_data: "ไม่พบข้อมูล",
             th_saved_time: "วันที่บันทึก", th_name: "ชื่อ", th_doc_id: "Pass/Work", th_dob: "วันเกิด (อายุ)", th_pass: "รหัสผ่าน", th_phone: "เบอร์โทรศัพท์", th_status: "สถานะ", th_fee: "ค่าบริการ", th_action: "จัดการ"
         }
     };
@@ -694,12 +809,46 @@
     // Realtime Data Sync from Firebase Cloud
     onSnapshot(clientsCollection, (snapshot) => {
         clients = [];
-        snapshot.forEach((doc) => {
-            clients.push({ id: doc.id, ...doc.data() });
+        const now = new Date();
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            const clientItem = { id: docSnap.id, ...data };
+            
+            // Auto Clean Trash items older than 30 days
+            if (data.isTrashed && data.trashedAt) {
+                const trashedDate = new Date(data.trashedAt);
+                const diffTime = Math.abs(now - trashedDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                if (diffDays > 30) {
+                    deleteDoc(doc(db, "clients", docSnap.id)); // Permanent delete after 30 days
+                    return;
+                }
+            }
+            clients.push(clientItem);
         });
+
+        const trashCount = clients.filter(c => c.isTrashed).length;
+        document.getElementById('trashViewBtn').textContent = `🗑️ Trash (${trashCount})`;
+
         populateMonthFilter();
         applyFilters();
     });
+
+    window.toggleTrashView = function() {
+        isTrashMode = !isTrashMode;
+        const btn = document.getElementById('trashViewBtn');
+        if (isTrashMode) {
+            btn.style.backgroundColor = 'var(--accent-yellow)';
+            btn.style.color = '#000';
+            btn.textContent = '📁 Saved Data သို့ပြန်သွားမည်';
+        } else {
+            btn.style.backgroundColor = 'var(--card-bg)';
+            btn.style.color = 'var(--accent-yellow)';
+            const trashCount = clients.filter(c => c.isTrashed).length;
+            btn.textContent = `🗑️ Trash (${trashCount})`;
+        }
+        applyFilters();
+    }
 
     window.toggleSidebar = function() {
         document.getElementById('settingsSidebar').classList.toggle('active');
@@ -750,8 +899,6 @@
         document.getElementById('btn_f_all').textContent = t.f_all;
         document.getElementById('btn_f_work').textContent = t.f_work;
         document.getElementById('btn_f_done').textContent = t.f_done;
-        document.getElementById('btn_clear_all').textContent = t.clear_all;
-        document.getElementById('lbl_list_title').textContent = t.list_title;
 
         document.getElementById('th_saved_time').textContent = t.th_saved_time;
         document.getElementById('th_name').textContent = t.th_name;
@@ -785,7 +932,7 @@
         const cleanVal = val.trim().toUpperCase();
         if(!cleanVal) return;
         
-        const match = clients.find(c => c.docId.toUpperCase() === cleanVal);
+        const match = clients.find(c => !c.isTrashed && c.docId.toUpperCase() === cleanVal);
         if(match) {
             editItem(match.id);
         }
@@ -795,7 +942,7 @@
         applyFilters();
         const cleanVal = val.trim().toUpperCase();
         if(cleanVal) {
-            const match = clients.find(c => c.docId.toUpperCase() === cleanVal);
+            const match = clients.find(c => !c.isTrashed && c.docId.toUpperCase() === cleanVal);
             if(match) {
                 editItem(match.id);
             }
@@ -833,7 +980,8 @@
             password: document.getElementById('password').value.trim(),
             phone: document.getElementById('phone').value.trim(),
             status: document.getElementById('status').value,
-            revenue: parseFloat(document.getElementById('revenue').value) || 0
+            revenue: parseFloat(document.getElementById('revenue').value) || 0,
+            isTrashed: false
         };
 
         if (editId) {
@@ -928,11 +1076,22 @@
         }
     }
 
+    window.restoreItem = async function(id) {
+        if (confirm("ဤစာရင်းကို ပင်မစာရင်းထဲသို့ ပြန်လည်ယူမည်မှာ သေချာပါသလား?")) {
+            await updateDoc(doc(db, "clients", id), {
+                isTrashed: false,
+                trashedAt: null
+            });
+            alert("စာရင်းကို အောင်မြင်စွာ ပြန်ယူပြီးပါပြီ!");
+        }
+    }
+
     function updateDashboard(currentDataList) {
-        document.getElementById('totalClients').textContent = currentDataList.length;
-        document.getElementById('totalWorking').textContent = currentDataList.filter(c => c.status === 'WORKING').length;
-        document.getElementById('totalFinished').textContent = currentDataList.filter(c => c.status === 'FINISHED').length;
-        const revSum = currentDataList.reduce((sum, c) => sum + (c.revenue || 0), 0);
+        const activeList = currentDataList.filter(c => !c.isTrashed);
+        document.getElementById('totalClients').textContent = activeList.length;
+        document.getElementById('totalWorking').textContent = activeList.filter(c => c.status === 'WORKING').length;
+        document.getElementById('totalFinished').textContent = activeList.filter(c => c.status === 'FINISHED').length;
+        const revSum = activeList.reduce((sum, c) => sum + (c.revenue || 0), 0);
         document.getElementById('totalRevenue').textContent = revSum.toLocaleString();
     }
 
@@ -949,6 +1108,9 @@
         const bannedVal = document.getElementById('bannedFilter').value;
 
         const filtered = clients.filter(c => {
+            // Check Trash Filter
+            const matchesTrash = isTrashMode ? !!c.isTrashed : !c.isTrashed;
+
             const docMatch = c.docId ? c.docId.toLowerCase().includes(query) : false;
             const nameMatch = c.name ? c.name.toLowerCase().includes(query) : false;
             const phoneVal = c.phone || c.pincode || '';
@@ -963,14 +1125,17 @@
             if (bannedVal === 'OK') matchesBanned = !c.isIssue;
             if (bannedVal === 'ISSUE') matchesBanned = !!c.isIssue;
 
-            return matchesSearch && matchesFilter && matchesMonth && matchesBanned;
+            return matchesTrash && matchesSearch && matchesFilter && matchesMonth && matchesBanned;
         });
 
-        updateDashboard(filtered);
+        const t = i18n[currentLang];
+        document.getElementById('lbl_list_title').textContent = isTrashMode ? t.list_title_trash : t.list_title;
+
+        updateDashboard(clients);
         renderTable(filtered);
     }
 
-    /* Checkbox & Delete Selected Functions */
+    /* Checkbox & Delete Selected Functions with Password Protection */
     window.toggleSelectAll = function(isChecked) {
         const rowCheckboxes = document.querySelectorAll('.row-checkbox');
         rowCheckboxes.forEach(cb => cb.checked = isChecked);
@@ -983,7 +1148,9 @@
         
         if (checkedCount > 0) {
             btnDeleteSelected.style.display = 'inline-block';
-            btnDeleteSelected.textContent = `🗑 အမှန်ခြစ်ထားသည် (${checkedCount}) ခုဖျက်မည်`;
+            btnDeleteSelected.textContent = isTrashMode 
+                ? `🗑 အပြီးတိုင် ဖျက်မည် (${checkedCount})` 
+                : `🗑 အမှန်ခြစ်ထားသည် (${checkedCount}) ခု Trash သို့ပို့မည်`;
         } else {
             btnDeleteSelected.style.display = 'none';
         }
@@ -995,17 +1162,35 @@
         }
     }
 
+    // SOFT DELETE TO TRASH (30 DAYS) WITH PASSWORD (112025)
     window.deleteSelectedData = async function() {
         const checkedBoxes = document.querySelectorAll('.row-checkbox:checked');
         if (checkedBoxes.length === 0) return;
 
-        if (confirm(`အမှန်ခြစ်ထားသော စာရင်း (${checkedBoxes.length}) ခုကို ဖျက်ပစ်ရန် သေချာပါသလား?`)) {
+        const inputPassword = prompt(`လုပ်ဆောင်ချက်ပြုလုပ်ရန် Password (112025) ရိုက်ထည့်ပါ:`);
+
+        if (inputPassword === null) return;
+
+        if (inputPassword === SYSTEM_PASSCODE) {
+            const nowIso = new Date().toISOString();
             for (let cb of checkedBoxes) {
                 const docIdToDelete = cb.value;
-                await deleteDoc(doc(db, "clients", docIdToDelete));
+                if (isTrashMode) {
+                    // Permanent Delete if already in Trash
+                    await deleteDoc(doc(db, "clients", docIdToDelete));
+                } else {
+                    // Move to Trash (Soft Delete)
+                    await updateDoc(doc(db, "clients", docIdToDelete), {
+                        isTrashed: true,
+                        trashedAt: nowIso
+                    });
+                }
             }
             document.getElementById('selectAllCheckbox').checked = false;
             updateDeleteSelectedBtnState();
+            alert(isTrashMode ? 'စာရင်းများကို အပြီးတိုင် ဖျက်ပြီးပါပြီ!' : 'စာရင်းများကို Trash အမှိုက်ပုံးသို့ ပို့လိုက်ပါပြီ (ရက် ၃၀ အတွင်း ပြန်ယူနိုင်သည်)။');
+        } else {
+            alert('❌ Password မှားယွင်းနေပါသည်။ လုပ်ဆောင်ခွင့်မရှိပါ။');
         }
     }
 
@@ -1053,18 +1238,24 @@
                     <td style="color: var(--accent-yellow); font-weight: 800; font-size: 13px;">${c.revenue.toLocaleString()} THB</td>
                     <td>
                         <div class="action-group">
-                            <button class="btn-icon-only ${c.isIssue ? 'btn-icon-status-issue' : 'btn-icon-status-ok'}" onclick="toggleIssueStatus('${c.id}')" title="${c.isIssue ? 'အဆင်မပြေပါ' : 'အဆင်ပြေပါသည်'}">
-                                ${c.isIssue 
-                                    ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>` 
-                                    : `<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`
-                                }
-                            </button>
-                            <button class="btn-icon-only btn-icon-edit" onclick="editItem('${c.id}')" title="ပြင်မည်">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                            </button>
-                            <button class="btn-icon-only btn-icon-share" onclick="shareItem('${c.id}')" title="ပို့မည်">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-                            </button>
+                            ${isTrashMode ? `
+                                <button class="btn-icon-only btn-icon-restore" onclick="restoreItem('${c.id}')" title="ပြန်ယူမည် (Restore)">
+                                    ♻️
+                                </button>
+                            ` : `
+                                <button class="btn-icon-only ${c.isIssue ? 'btn-icon-status-issue' : 'btn-icon-status-ok'}" onclick="toggleIssueStatus('${c.id}')" title="${c.isIssue ? 'အဆင်မပြေပါ' : 'အဆင်ပြေပါသည်'}">
+                                    ${c.isIssue 
+                                        ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>` 
+                                        : `<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`
+                                    }
+                                </button>
+                                <button class="btn-icon-only btn-icon-edit" onclick="editItem('${c.id}')" title="ပြင်မည်">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                </button>
+                                <button class="btn-icon-only btn-icon-share" onclick="shareItem('${c.id}')" title="ပို့မည်">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                                </button>
+                            `}
                         </div>
                     </td>
                 </tr>
@@ -1072,14 +1263,6 @@
         }).join('');
 
         updateDeleteSelectedBtnState();
-    }
-
-    window.clearAllData = async function() {
-        if(confirm('စာရင်းအားလုံးကို ဖျက်ပစ်ရန် သေချာပါသလား?')) {
-            for (let c of clients) {
-                await deleteDoc(doc(db, "clients", c.id));
-            }
-        }
     }
 </script>
 </body>
